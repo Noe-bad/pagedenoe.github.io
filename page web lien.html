@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moteur de recherche</title>
+    <style>
+        /* Style de base pour centrer le contenu */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            background-image: url('https://www.oneweekgolfschool.com/uploads/6/0/7/2/60729141/9410262_orig.jpeg'); /* Remplacez par le chemin vers votre image */
+            background-size: cover; /* Assure que l'image couvre tout l'écran */
+            background-position: center; /* Centre l'image */
+			flex-direction: column;
+        }
+
+        /* Conteneur principal */
+        .container {
+            text-align: center;
+        }
+
+        /* Style du logo */
+        .logo {
+            font-size: 50px;
+            color: #f5f5f5;
+            margin-bottom: 20px;
+        }
+
+        /* Barre de recherche */
+        .search-bar {
+            width: 400px;
+            padding: 15px;
+            font-size: 18px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Effet au focus */
+        .search-bar:focus {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            border-color: #4285F4;
+        }
+
+        /* Style des boutons */
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 14px;
+            background-color: #f8f9fa;
+            border: 1px solid #dfe1e5;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e8e8e8;
+        }
+
+        /* Style pour les images de raccourcis */
+        .shortcut-images {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .shortcut-images a {
+            margin: 10px;
+        }
+
+        .shortcut-images img {
+            width:100px;
+            height:100px;
+            border-radius: 8px;
+            border: 1px solid #dfe1e5;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .shortcut-images img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Logo simplifié en texte -->
+        <div class="logo">Recherche</div>
+
+        <!-- Formulaire de recherche avec ID -->
+        <form id="searchForm" onsubmit="return performSearch()">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Tapez votre recherche...">
+            <button type="submit" class="btn">Recherche</button>
+        </form>
+
+       <!-- Bouton supplémentaire -->
+         <button class="btn" onclick="window.location.href='jaidelachance.html'">J'ai de la chance</button>
+
+
+        <!-- Images de raccourcis -->
+        <div class="shortcut-images">
+            <a href="https://www.laprovence.com/">
+                <img src="lp.png" alt="La Provence">
+            </a>
+            <a href="https://www.pinterest.fr/">
+                <img src="Pinterest-logo.png" alt="pinterest">
+            </a>
+            <a href="https://www.youtube.com/">
+                <img src="ytbe.png" alt="Youtube">
+            </a>
+            <a href="https://www.gmail.com">
+                <img src="gmail.png" alt="Gmail">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function performSearch() {
+            // Récupère la valeur de la barre de recherche
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+
+            // Vérifie si la valeur est "tableau"
+            if (searchInput === 'tableau') {
+                // Redirige vers la page souhaitée
+                window.location.href = 'page web texte 2.html'; // Remplacez par l'URL de votre page cible
+                return false; // Empêche la soumission du formulaire par défaut
+            } else {
+                // Optionnel : affiche un message ou redirige vers une autre page par défaut
+                alert('Aucun résultat trouvé pour "' + searchInput + '"');
+                return false; // Empêche la soumission du formulaire par défaut
+            }
+        }
+    </script>
+</body>
+</html>

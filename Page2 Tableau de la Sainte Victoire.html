@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de la Sainte Victoire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            background-image: url('fond site.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Évite le défilement si le contenu dépasse */
+        }
+        .image-container {
+            width: 90%;
+            max-width: 800px; /* Limite la largeur de l'image */
+            text-align: center;
+            margin-bottom: 40px; /* Ajoute un espace sous l'image */
+            position: relative;
+            z-index: 1; /* Assure que l'image est au-dessus du texte si nécessaire */
+        }
+        .image {
+            width: 90%; /* Ajuste la largeur de l'image */
+            height: auto;
+            display: block;
+        }
+        .content {
+            width: 100%;
+            max-width: 600px; /* Limite la largeur du texte */
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2; /* Assure que le texte est au-dessus des autres éléments */
+            margin-bottom: 20px; /* Ajoute un espace sous le texte pour éviter la superposition avec les autres éléments */
+        }
+        .description {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #1a0dab;
+            text-decoration: none;
+        }
+        .container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            z-index: 1000; /* Assure que la section est au-dessus du reste du contenu */
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            font-size: 14px;
+            border: 1px solid #dfe1e5;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 5px;
+            font-size: 14px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img src="https://www.pearltrees.com/s/preview/media/68/c4/82/68c4822e3284b982dbef65b0378e0e14-xl.jpg" alt="tableau de la Sainte Victoire" class="image">
+    </div>
+
+    <div class="content">
+        <div class="description">
+            "Découvrez la beauté emblématique de la montagne Sainte-Victoire, immortalisée à travers ce tableau captivant. Située près d'Aix-en-Provence, cette montagne est devenue une source d'inspiration pour de nombreux artistes, dont le célèbre Cézanne. Cette œuvre saisit toute la majesté et la sérénité de la montagne, avec ses nuances subtiles de bleu, de gris et de vert, reflétant les variations de lumière au fil de la journée. Les touches de pinceau délicates évoquent l'harmonie entre la nature et l’art, transformant un paysage simple en une œuvre pleine de profondeur et de poésie. Idéal pour les amoureux de la Provence et les passionnés d'art paysager, ce tableau apportera une atmosphère apaisante et élégante à n'importe quel espace. Offrez-vous une pièce d'art qui incarne l'essence même de la nature provençale."
+        </div>
+        <a href="page web texte 2.html" class="back-link">Retour à la page principale</a>
+    </div>
+
+    <div class="container">
+        <p>Prix fixe par unité: <strong>4999,99 €</strong></p>
+        <form id="quantityForm">
+            <label for="quantity">Quantité:</label>
+            <input type="number" id="quantity" name="quantity" step="1" min="1" required>
+            <button type="submit">Calculer le prix total</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Prix fixe
+        const fixedPrice = 4999.99;
+
+        document.getElementById('quantityForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche la soumission du formulaire
+
+            // Récupère la valeur du champ de quantité
+            const quantity = parseInt(document.getElementById('quantity').value);
+
+            // Calcule le total
+            const total = fixedPrice * quantity;
+
+            // Affiche le résultat
+            document.getElementById('result').innerText = `Le total est: ${total.toFixed(2)} €`;
+        });
+    </script>
+</body>
+</html>

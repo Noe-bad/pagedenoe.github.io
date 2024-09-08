@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket à Gratter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://img.freepik.com/vecteurs-premium/invitation-vip-luxe-casino-fond-banniere-jeu-fete-celebration_29865-1738.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; /* Ajouté pour permettre le positionnement des boutons */
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            width: 400px;
+            height: 300px; /* Ajustement de la taille pour contenir le ticket */
+            z-index: 1; /* Pour s'assurer que le conteneur est au-dessus de l'image de fond */
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #fff; /* Couleur du texte blanc pour le rendre visible sur le fond */
+            margin-bottom: 10px;
+        }
+
+        /* Zone à gratter */
+        #ticket-container {
+            position: relative;
+            margin: 0 auto; /* Centrer la zone de grattage */
+        }
+
+        #ticket {
+            width: 350px;
+            height: 100px;
+            background-color: #bbb;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+        }
+
+        #play-again, #back-button {
+            position: absolute; /* Positionnement absolu par rapport au conteneur */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 2; /* S'assure que les boutons sont au-dessus du reste */
+        }
+
+        #play-again {
+            bottom: 20px; /* Distance du bas */
+            left: 50%; /* Centrage horizontal */
+            transform: translateX(-50%); /* Ajuste le centrage */
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        #play-again:hover {
+            background-color: #0056b3;
+        }
+
+        #back-button {
+            top: 0px; /* Distance du haut */
+            left: 0px; /* Distance du côté gauche */
+            background-color: #fff;
+            color: #000;
+            font-size: 18px; /* Taille de la police pour la flèche */
+            padding: 10px 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour le bouton */
+        }
+
+        #back-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .back-icon {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Grattez pour GAGNER</h1>
+
+        <!-- Conteneur du ticket à gratter -->
+        <div id="ticket-container">
+            <!-- Canvas pour la zone à gratter -->
+            <canvas id="ticket"></canvas>
+        </div>
+
+        <!-- Bouton Flèche Arrière -->
+        <button id="back-button" onclick="goBack()">
+            <span class="back-icon">&#9664;</span>
+        </button>
+
+        <!-- Bouton Rejouer -->
+        <button id="play-again">Rejouer</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('ticket');
+        const ctx = canvas.getContext('2d');
+        let isScratching = false;
+        let winAmount;
+        let scratchedEnough = false; // Variable pour bloquer le grattage après révélation
+
+        // Génère un montant d'argent aléatoire (50% de chances de gagner 0€)
+        function generateWinningAmount() {
+            return Math.random() < 0.5 ? 0 : Math.floor(Math.random() * 100) + 1;
+        }
+
+        // Définir le montant gagnant
+        winAmount = generateWinningAmount();
+
+        // Ajuste la taille du canvas
+        canvas.width = 350;
+        canvas.height = 100;
+
+        // Remplit le canvas avec une couleur argentée
+        ctx.fillStyle = '#ccc';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Ajoute la texture de grattage
+        ctx.globalCompositeOperation = 'destination-out';
+
+        // Commence à gratter lorsque l'utilisateur clique
+        canvas.addEventListener('mousedown', function(e) {
+            if (!scratchedEnough) { // Vérifie si le ticket n'est pas complètement gratté
+                isScratching = true;
+                scratch(e);
+            }
+        });
+
+        // Continue à gratter lorsque l'utilisateur maintient le bouton enfoncé
+        canvas.addEventListener('mousemove', function(e) {
+            if (isScratching && !scratchedEnough) {
+                scratch(e);
+            }
+        });
+
+        // Arrête le grattage lorsque l'utilisateur relâche le bouton
+        canvas.addEventListener('mouseup', function() {
+            isScratching = false;
+            if (!scratchedEnough) {
+                checkIfScratchedEnough();
+            }
+        });
+
+        // Arrête le grattage même si la souris quitte la zone
+        canvas.addEventListener('mouseleave', function() {
+            isScratching = false;
+        });
+
+        // Fonction pour gratter
+        function scratch(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const radius = 20; // Agrandir la zone de grattage
+
+            // Gratte un cercle à l'endroit de la souris
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+
+        // Fonction pour afficher la récompense sur le canvas
+        function revealWinningAmount() {
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.font = 'bold 36px Arial';
+            ctx.fillStyle = winAmount > 0 ? 'green' : 'red';
+            ctx.textAlign = 'center';
+            ctx.fillText(`${winAmount} €`, canvas.width / 2, canvas.height / 2 + 12);
+        }
+
+        // Vérifie si une grande partie du ticket a été grattée
+        function checkIfScratchedEnough() {
+            const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            let totalPixels = imgData.width * imgData.height;
+            let scratchedPixels = 0;
+
+            // Compte les pixels transparents
+            for (let i = 0; i < imgData.data.length; i += 4) {
+                if (imgData.data[i + 3] === 0) {
+                    scratchedPixels++;
+                }
+            }
+
+            // Si plus de 60% de la surface est grattée, montre le message
+            if ((scratchedPixels / totalPixels) > 0.6) {
+                scratchedEnough = true; // Désactive le grattage après révélation
+                revealWinningAmount();
+            }
+        }
+
+        // Réinitialise le ticket à gratter
+        function resetTicket() {
+            // Réinitialise les variables
+            scratchedEnough = false;
+            winAmount = generateWinningAmount();
+
+            // Remplit le canvas avec une couleur argentée
+            ctx.fillStyle = '#ccc';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Ajoute la texture de grattage
+            ctx.globalCompositeOperation = 'destination-out';
+        }
+
+        // Ajoute un gestionnaire d'événements pour le bouton "Rejouer"
+        document.getElementById('play-again').addEventListener('click', resetTicket);
+
+        // Fonction pour rediriger vers une autre page
+        function goBack() {
+            window.location.href = 'page web lien.html'; // Remplacez 'autre_page.html' par l'URL ou le chemin de votre autre page
+        }
+    </script>
+</body>
+</html>

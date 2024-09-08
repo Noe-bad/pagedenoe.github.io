@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Recherche Simulée</title>
+    <style>
+        /* Style global */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Style de la barre de recherche */
+        .search-bar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar {
+            width: 600px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            outline: none;
+        }
+
+        /* Conteneur pour les résultats */
+        .results-container {
+            margin: 20px auto;
+            width: 60%;
+        }
+
+        .result {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .result img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .result-text {
+            max-width: 500px;
+        }
+
+        .result-title {
+            font-size: 18px;
+            color: #1a0dab;
+            margin-bottom: 5px;
+        }
+
+        .result-url {
+            color: #006621;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .result-description {
+            font-size: 14px;
+            color: #545454;
+        }
+   
+    #back-button {
+            top: 2px; /* Distance du haut */
+            left: 2px; /* Distance du côté gauche */
+            background-color: #fff;
+            color: #000;
+            font-size: 18px; /* Taille de la police pour la flèche */
+            padding: 10px 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour le bouton */
+        }
+
+        #back-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .back-icon {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+   </style>
+</head>
+<body>
+
+    <div>
+    <!-- Bouton Flèche Arrière -->
+        <button id="back-button" onclick="goBack()">
+            <span class="back-icon">&#9664;</span>
+        </button>
+	</div>
+	
+	<!-- Barre de recherche -->
+    <div class="search-bar-container">
+        <input type="text" class="search-bar" placeholder="Tapez votre recherche...">
+    </div>
+
+    <!-- Résultats de recherche simulés -->
+    <div class="results-container">
+
+        <div class="result">
+            <img src="https://www.pearltrees.com/s/preview/media/d3/db/3a/d3db3a30c40885606541555588d791c2-xl.jpg" alt="Image">
+            <div class="result-text">
+                <a href="Page1 Tableau de Naruto.html" style="font-size: 20px;" class="link">Tableau de Naruto</a>
+                <div class="result-description">
+                    "Plongez dans l'univers vibrant du manga avec ce tableau unique, aux détails saisissants et aux couleurs éclatantes. Chaque coup de pinceau...
+                </div>
+            </div>
+        </div>
+
+        <div class="result">
+            <img src="https://www.pearltrees.com/s/preview/media/68/c4/82/68c4822e3284b982dbef65b0378e0e14-xl.jpg" alt="Image">
+            <div class="result-text">
+                <a href="Page2 Tableau de la Sainte Victoire.html" style="font-size: 20px;" class="link">Tableau de la Sainte Victoire</a>
+                <div class="result-description">
+                    "Découvrez la beauté emblématique de la montagne Sainte-Victoire, immortalisée à travers ce tableau captivant. Située près d'Aix-en-Provence...
+                </div>
+            </div>
+        </div>
+
+        <div class="result">
+            <img src="https://www.pearltrees.com/s/preview/media/a6/b3/e6/a6b3e66ca092e453596a9402e46f0812-xl.jpg" alt="Image">
+            <div class="result-text">
+                <a href="page3 Ours en Peluche sur Toile.html" style="font-size: 20px;" class="link">Ours en peluche sur toile</a>
+                <div class="result-description">
+                    "Plongez dans un univers de tendresse et de nostalgie avec ce tableau représentant un adorable ours en peluche. Symbole d'innocence et de réconfort, cet ours en peluche est magnifiquement capturé dans des tons doux et chaleureux...
+                </div>
+            </div>
+        </div>
+
+        <div class="result">
+            <img src="https://www.pearltrees.com/s/preview/media/22/50/28/2250286eed4369d86ccfa0e2cf93624d-xl.jpg" alt="Image">
+            <div class="result-text">
+                <a href="Page4 L'Oiseau Bleu sur Toile.html" style="font-size: 20px;" class="link">L'oiseau bleu sur toile</a>
+                <div class="result-description">
+                    "Élevez votre décoration intérieure avec ce tableau enchanteur mettant en scène un oiseau bleu perché délicatement sur une branche. L'oiseau, avec ses plumes éclatantes et ses nuances de bleu captivantes...
+                </div>
+            </div>
+        </div>
+
+    </div>
+ <script>
+ // Fonction pour rediriger vers une autre page
+        function goBack() {
+            window.location.href = 'page web lien.html'; // Remplacez 'autre_page.html' par l'URL ou le chemin de votre autre page
+        }
+</script>
+
+</body>
+</html>

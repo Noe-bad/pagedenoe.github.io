@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ours en peluche sur toile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            background-image: url('fond site.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden; /* Évite le défilement si le contenu dépasse */
+        }
+        .image-container {
+            width: 80%;
+            max-width: 800px; /* Limite la largeur de l'image */
+            text-align: center;
+            margin-bottom: 20px; /* Espace sous l'image pour éviter la superposition avec le texte */
+        }
+        .image {
+            width: 100%; /* Ajuste la largeur de l'image */
+            height: auto;
+            display: block;
+        }
+        .content {
+            width: 80%;
+            max-width: 800px; /* Limite la largeur du texte */
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin-bottom: 20px; /* Espace sous le texte pour éviter la superposition avec d'autres éléments */
+        }
+        .description {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #1a0dab;
+            text-decoration: none;
+        }
+        .container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            z-index: 1000; /* Assure que la section est au-dessus du reste du contenu */
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            font-size: 14px;
+            border: 1px solid #dfe1e5;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 5px;
+            font-size: 14px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img src="https://www.pearltrees.com/s/preview/media/a6/b3/e6/a6b3e66ca092e453596a9402e46f0812-xl.jpg" alt="L'Oiseau Bleu sur Toile" class="image">
+    </div>
+
+    <div class="content">
+        <div class="description">
+            "Plongez dans un univers de tendresse et de nostalgie avec ce tableau représentant un adorable ours en peluche. Symbole d'innocence et de réconfort, cet ours en peluche est magnifiquement capturé dans des tons doux et chaleureux, évoquant des souvenirs d'enfance et des moments de douceur. Les détails délicats du pelage et l'expression bienveillante du personnage en font une œuvre touchante qui parle directement au cœur. Parfait pour une chambre d'enfant, une salle de jeux ou tout espace où vous souhaitez ajouter une note de chaleur et de charme. Ce tableau, à la fois simple et évocateur, saura réchauffer l'atmosphère et éveiller des sourires. Offrez-vous un morceau d'art qui incarne la douceur de l'enfance et la pureté des souvenirs partagés."
+        </div>
+        <a href="page web texte 2.html" class="back-link">Retour à la page principale</a>
+    </div>
+
+    <div class="container">
+        <p>Prix fixe par unité: <strong>6999,99 €</strong></p>
+        <form id="quantityForm">
+            <label for="quantity">Quantité:</label>
+            <input type="number" id="quantity" name="quantity" step="1" min="1" required>
+            <button type="submit">Calculer le prix total</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Prix fixe
+        const fixedPrice = 6999.99;
+
+        document.getElementById('quantityForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche la soumission du formulaire
+
+            // Récupère la valeur du champ de quantité
+            const quantity = parseInt(document.getElementById('quantity').value);
+
+            // Calcule le total
+            const total = fixedPrice * quantity;
+
+            // Affiche le résultat
+            document.getElementById('result').innerText = `Le total est: ${total.toFixed(2)} €`;
+        });
+    </script>
+</body>
+</html>
+

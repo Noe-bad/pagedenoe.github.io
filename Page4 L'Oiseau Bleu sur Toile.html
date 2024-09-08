@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Oiseau Bleu sur Toile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            background-image: url('fond site.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+		    display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden; /* Évite le défilement si le contenu dépasse */
+        }
+        .image-container {
+            width: "40%;
+            max-width: 800px; /* Limite la largeur de l'image */
+            text-align: center;
+            margin-bottom: 20px; /* Espace sous l'image pour éviter la superposition avec le texte */
+        }
+        .image {
+            width: 40%; /* Ajuste la largeur de l'image */
+            height: auto;
+        }
+        .content {
+            width: 60%;
+            max-width: 800px; /* Limite la largeur du texte */
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin-bottom: 20px; /* Espace sous le texte pour éviter la superposition avec d'autres éléments */
+        }
+        .description {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5; /* Améliore la lisibilité du texte */
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #1a0dab;
+            text-decoration: none;
+        }
+        .container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            z-index: 1000; /* Assure que la section est au-dessus du reste du contenu */
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            font-size: 14px;
+            border: 1px solid #dfe1e5;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 5px;
+            font-size: 14px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img src="https://www.pearltrees.com/s/preview/media/22/50/28/2250286eed4369d86ccfa0e2cf93624d-xl.jpg" alt="L'Oiseau Bleu sur Toile" class="image">
+    </div>
+
+    <div class="content">
+        <div class="description">
+            "Élevez votre décoration intérieure avec ce tableau enchanteur mettant en scène un oiseau bleu perché délicatement sur une branche. L'oiseau, avec ses plumes éclatantes et ses nuances de bleu captivantes, contraste magnifiquement avec le fond apaisant, créant une harmonie parfaite entre la nature et l'art. Les détails méticuleux du plumage et la tranquillité de la scène invitent à la contemplation et apportent une touche de sérénité à votre espace. Que ce soit dans un salon, un bureau ou une chambre, ce tableau insufflera une sensation de légèreté et de fraîcheur, tout en capturant la beauté simple et élégante de la nature. Offrez-vous une œuvre qui célèbre la grâce et la liberté des oiseaux, et laissez-vous emporter par la douceur de ce moment suspendu."
+        </div>
+        <a href="page web texte 2.html" class="back-link">Retour à la page principale</a>
+    </div>
+
+    <div class="container">
+        <p>Prix fixe par unité: <strong>5999,99 €</strong></p>
+        <form id="quantityForm">
+            <label for="quantity">Quantité:</label>
+            <input type="number" id="quantity" name="quantity" step="1" min="1" required>
+            <button type="submit">Calculer le prix total</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Prix fixe
+        const fixedPrice = 5999.99;
+
+        document.getElementById('quantityForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche la soumission du formulaire
+
+            // Récupère la valeur du champ de quantité
+            const quantity = parseInt(document.getElementById('quantity').value);
+
+            // Calcule le total
+            const total = fixedPrice * quantity;
+
+            // Affiche le résultat
+            document.getElementById('result').innerText = `Le total est: ${total.toFixed(2)} €`;
+        });
+    </script>
+</body>
+</html>
+
